@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+  <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+  <!-- Favicon-->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+    type="text/css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css" />
+
+  <!-- Bootstrap Core Css -->
+  <link href="../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+  <!-- Waves Effect Css -->
+  <link href="../static/plugins/node-waves/waves.css" rel="stylesheet" />
+
+  <!-- Animation Css -->
+  <link href="../static/plugins/animate-css/animate.css" rel="stylesheet" />
+
+  <!-- Morris Chart Css-->
+  <link href="../static/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+  <!-- Custom Css -->
+  <link href="../static/css/style.css" rel="stylesheet" />
+
+  <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="../static/css/themes/all-themes.css" rel="stylesheet" />
+
+  <style>
+    .navbar2 {
+      overflow: hidden;
+      background-color: #fff;
+      position: fixed;
+      display: flex;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .containimg2 {
+      height: 75%;
+      object-fit: contain;
+    }
+
+    .scanner-button {
+      position: fixed;
+      width: 7vh;
+      height: 7vh;
+      bottom: 13vh;
+      right: 5%;
+      border-radius: 50% !important;
+      background-size: cover;
+      background: linear-gradient(225deg, #ccccccff, #f3f3f3ff);
+      background-origin: border-box;
+      z-index: 5000;
+    }
+
+    .divider {
+      width: 100vw;
+      margin-left: -8px;
+      margin-bottom: -10px;
+    }
+
+    .navbar2 a {
+      float: left;
+      flex: 1;
+      color: #3c78d8ff;
+      text-align: center;
+      padding: 10px 10px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    .navbar2 a:hover {
+      background: #ccc;
+      color: black;
+    }
+    .navbar2 a.active {
+      background-color: #ccc;
+      color: #fff;
+    }
+
+    .cross {
+      color: #fff;
+      width: 10px !important;
+      height: 20px;
+      float: right;
+      margin-top: 10px;
+      margin-right: 20px !important;
+    }
+    .exit-button{
+      background: linear-gradient(225deg, #ccccccff, #f3f3f3ff);
+      color: #000000;
+      font-size: 15px !important;
+      float: right;
+      margin-top: 10px;
+      margin-right: 5px;
+    }
+    .camera {
+      height: 100vh !important;
+      box-shadow:inset 0px 0px 0px 10vw rgba(0, 0, 0, 0.2);
+    }
+
+    #scanner-shadow {
+      width: 100vw;
+      height: 112vw;
+      position: absolute;
+      top: -2vh;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      color: goldenrod;
+      padding-top: 50vw;
+      box-shadow: 0px 0px 0px calc(40vh - 50vw) rgba(0, 0, 0, 0.2),
+        inset 0px 0px 0px 10vw rgba(0, 0, 0, 0.2);
+    }
+    .btns-div {
+      height: 5vh;
+      width: 8vw;
+      position: fixed;
+      bottom: 10vh;
+      float: left;
+    }
+    .popup {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 10000;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+.up {
+  z-index: 100000 !important;
+}
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+  </style>
+</head>
+
+<body class="theme-red">
+  <!-- Page Loader -->
+  <div class="page-loader-wrapper">
+    <div class="loader">
+      <div class="preloader">
+        <div class="spinner-layer pl-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <p>Please wait...</p>
+    </div>
+  </div>
+  <!-- #END# Page Loader -->
+  <!-- Overlay For Sidebars -->
+  <div class="overlay"></div>
+  <!-- #END# Overlay For Sidebars -->
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <div class="search-icon">
+      <i class="material-icons">search</i>
+    </div>
+    <input type="text" placeholder="START TYPING..." />
+    <div class="close-search">
+      <i class="material-icons">close</i>
+    </div>
+  </div>
+  <!-- #END# Search Bar -->
+  <!-- Top Bar -->
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#navbar-collapse" aria-expanded="false"></a> -->
+        <a href="javascript:void(0);" class="bars neg-margin"></a>
+        <a href="" class="cross"><i class="material-icons">favorite</i></a>
+        <a href="javascript:void(0);" class="js-search cross" data-close="true"><i class="material-icons">search</i></a>
+        <a class="navbar-brand" href="index.html">Hello, {username}</a>
+        <hr class="divider">
+        <div>
+        <a class="navbar-brand" href="index.html">{current_store}</a>
+          <!-- <a
+              href="javascript:void(0);"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar-collapse"
+              aria-expanded="false"
+            ></a> -->
+          
+            <button class="exit-button btn shadow">
+              <i class="material-icons">arrow_back</i>
+              <span>Exit</span>
+            </button>
+           
+        </div>
+      </div>
+      <!-- <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">{current_store}</a>
+            </div> -->
+    </div>
+  </nav>
+  <div class="popup up">
+  <div class="popuptext" id="myPopup">Scan the QR code of the shop you're in<br>
+  <button class="btn btn-info" onclick="myFunction2()">Got it</button></div>
+</div>
+
+<script>
+  var toggle = 1;
+// When the user clicks on div, open the popup
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  if(toggle) {
+    popup.classList.toggle("show");
+    toggle = 0;
+  }
+}
+function myFunction2() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+</script>
+   <center>
+      <div id="camera">
+        <img class="camera" src="{{ url_for('video_feed') }}" alt="video feed">
+            <div id="scanner-shadow" className="text-center">Scan Item barcode
+            </div>
+      </div>
+      <div id="btns-div">
+        <!-- <a href="{{ url_for('capture_qr') }}">
+          <img class="btns-div" src="{{ url_for('static',filename='picture.png') }}" alt="take picture" class="btn"> 
+        </a> -->
+        <a href="{{ url_for('capture_bar') }}">
+          <img class="btns-div" src="{{ url_for('static',filename='bar.png') }}" alt="take picture" class="btn">
+        </a>
+      </div>
+    </center>
+    <div class="js-modal-buttons">
+    <button type="button" class="btn scanner-button shadow">
+    <img class="containimg2" src="http://cdn.onlinewebfonts.com/svg/img_128986.png">
+  </button></div>
+  <!-- #Top Bar -->
+  <!-- <a  href="{{url_for('index_2')}}">
+  <button type="button" class="btn scanner-button shadow">
+    <img class="containimg2" src="https://cdn.icon-icons.com/icons2/1875/PNG/512/qrcodescan_120401.png">
+  </button>
+  </a> -->
+  <!-- <div class="button-demo js-modal-buttons">
+  <button type="button" data-color="cyan" class="js-modal-buttons btn scanner-button bg-cyan waves-effect">CYAN</button></div> -->
+  <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Scan barcode</h4>
+                        </div>
+                        <div class="modal-body">
+                            Look for the Item barcode and scan it to add it to the cart.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">GOT IT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  <!-- #Top Bar -->
+  <!-- <a  href="{{url_for('index_2')}}">
+  <button type="button" class="btn scanner-button shadow">
+    <img class="containimg2" src="https://cdn.icon-icons.com/icons2/1875/PNG/512/qrcodescan_120401.png">
+  </button>
+  </a> -->
+  <!-- <div class="button-demo js-modal-buttons">
+  <button type="button" data-color="cyan" class="js-modal-buttons btn scanner-button bg-cyan waves-effect">CYAN</button></div> -->
+  <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  <section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+      <!-- User Info -->
+      <div class="user-info">
+        <div class="image">
+          <img src="../static/images/user.png" width="48" height="48" alt="User" />
+        </div>
+        <div class="info-container">
+          <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            John Doe
+          </div>
+          <div class="email">john.doe@example.com</div>
+          <div class="btn-group user-helper-dropdown">
+            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true">keyboard_arrow_down</i>
+            <ul class="dropdown-menu pull-right">
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- #User Info -->
+      <!-- Menu -->
+      <div class="menu">
+        <ul class="list">
+          <!-- <li class="active">
+            <a href="index.html">
+              <i class="material-icons">person</i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html">
+              <i class="material-icons">home</i>
+              <span>Rewards</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html">
+              <i class="material-icons">home</i>
+              <span>Coupons</span>
+            </a>
+          </li>
+          <hr> -->
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Purchases</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>E-Receipts</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Wallet</span>
+            </a>
+          </li>
+          <hr>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Notifications</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Customer Service</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- #Menu -->
+      <!-- Footer -->
+      <div class="legal">
+        <div class="copyright">
+          &copy; 2016 - 2017
+          <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+        </div>
+        <div class="version"><b>Version: </b> 1.0.5</div>
+      </div>
+      <!-- #Footer -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+  
+  </section>
+
+  <div class="navbar2">
+    <a href="{{url_for('index_')}}">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="24" height="24"
+      viewBox="0 0 172 172"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#1c4587"><path d="M86,15.05l-78.83333,70.95h21.5v64.5h114.66667v-64.5h21.5zM86,64.5c7.91917,0 14.33333,6.41417 14.33333,14.33333c0,7.91917 -6.41417,14.33333 -14.33333,14.33333c-7.91917,0 -14.33333,-6.41417 -14.33333,-14.33333c0,-7.91917 6.41417,-14.33333 14.33333,-14.33333zM114.66667,121.83333h-57.33333v-5.0095c0,-9.53167 15.91,-14.69883 28.66667,-14.69883c12.75667,0 28.66667,5.16717 28.66667,14.69883z"></path></g></g></svg>
+      <br>
+      Home</a>
+    <a href="#news">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="24" height="24"
+      viewBox="0 0 172 172"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#1c4587"><path d="M130.72,154.8h-89.44c-1.89469,0 -3.44,-1.53187 -3.44,-3.44v-50.17562l-7.88781,7.88781c-0.67187,0.67188 -1.59906,1.075 -2.53969,1.00781c-0.95406,-0.04031 -1.85437,-0.45687 -2.48594,-1.1825l-24.08,-27.52c-1.15563,-1.33031 -1.12875,-3.31906 0.08062,-4.60906l51.6,-55.04c1.02125,-1.10187 2.63375,-1.3975 3.99094,-0.7525c0.13437,0.06719 13.98844,6.54406 29.48187,6.54406c15.54719,0 29.3475,-6.47687 29.48188,-6.54406c1.30344,-0.63156 2.87562,-0.36281 3.91031,0.67188l51.6,51.6c1.34375,1.34375 1.34375,3.52062 0,4.86437l-27.52,27.52c-1.34375,1.34375 -3.52062,1.34375 -4.86437,0l-4.44781,-4.44781v50.17562c0,1.90813 -1.53187,3.44 -3.44,3.44z"></path></g></g></svg>
+      <br>
+      Explore</a>
+    <a href="#contact">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="24" height="24"
+      viewBox="0 0 172 172"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#1c4587"><path d="M86,0c-11.78581,0 -21.5,9.71419 -21.5,21.5c0,9.09831 5.85091,15.25716 9.85417,18.36458c1.98763,1.53972 3.63933,2.74349 4.25521,3.35938c0.19597,0.19597 0.19597,0.22396 0.22396,0.22396v2.91146c-2.60351,1.73568 -13.54948,9.18229 -27.54688,18.58854c-7.78255,5.23503 -15.73307,10.44206 -21.94792,14.55729c-3.10742,2.04362 -5.59896,3.86328 -7.61458,5.15104c-2.01562,1.28776 -3.89128,2.26758 -3.35937,2.01563l-0.44792,0.22396l-0.22396,0.22396c-3.83528,2.43555 -7.69857,4.67513 -11.19792,8.0625c-3.49935,3.38737 -6.49479,8.65039 -6.49479,14.55729c0,5.9069 2.77149,11.25391 6.94271,14.55729c4.17122,3.30339 9.32226,4.70313 14.55729,4.70313h7.16667v-14.33333h-7.16667c-2.63151,0 -4.56315,-0.75586 -5.59896,-1.56771c-1.03581,-0.81185 -1.56771,-1.37174 -1.56771,-3.35937c0,-1.98763 0.30794,-2.60351 2.01563,-4.25521c1.56771,-1.51172 4.64714,-3.49935 8.28646,-5.82292c0.08399,-0.05599 0.13997,-0.16797 0.22396,-0.22396c0.16797,-0.11198 0.25195,-0.11198 0.44792,-0.22396c1.23177,-0.67187 2.23958,-1.31576 4.03125,-2.46354c2.09961,-1.34375 4.92708,-3.07942 8.0625,-5.15104c6.27083,-4.14323 14.13737,-9.54622 21.94792,-14.78125c13.4375,-9.04232 23.06771,-15.62109 26.42708,-17.91667l60.69271,40.3125h0.22396c3.91927,2.49153 7.02669,4.64714 8.73438,6.49479c1.70768,1.84766 2.23958,2.85547 2.23958,5.375c0,2.1556 -0.25195,2.1276 -0.67187,2.46354c-0.41992,0.33594 -2.32357,1.11979 -6.49479,1.11979h-7.16667v14.33333h7.16667c5.87891,0 11.00195,-1.00781 15.22917,-4.25521c4.22722,-3.2474 6.27083,-8.65039 6.27083,-13.66146c0,-6.10286 -2.57552,-11.50586 -6.04687,-15.22917c-3.41536,-3.63932 -7.5306,-6.04687 -11.42187,-8.51042c-0.02799,-0.02799 0.02799,-0.19597 0,-0.22396h-0.22396l-61.14063,-40.98437v-3.13542c0,-4.14323 -2.18359,-7.72656 -4.25521,-9.85417c-2.07161,-2.1276 -4.00326,-3.47135 -5.59896,-4.70312c-3.16341,-2.46354 -4.47917,-3.13542 -4.47917,-6.94271c0,-3.97526 3.19141,-7.16667 7.16667,-7.16667c3.97526,0 7.16667,3.19141 7.16667,7.16667h14.33333c0,-11.78581 -9.71419,-21.5 -21.5,-21.5zM35.83333,100.33333v71.66667h100.33333v-71.66667z"></path></g></g></svg>
+      <br>
+      Wardrobe</a>
+    <a href="{{url_for('index_cart')}}">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+      width="24" height="24"
+      viewBox="0 0 172 172"
+      style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#1c4587"><path d="M12.09375,14.78125c-2.28438,0 -4.03125,1.74687 -4.03125,4.03125c0,2.28438 1.74687,4.03125 4.03125,4.03125h9.40625v69.875c0,2.28437 1.74687,4.03125 4.03125,4.03125c2.28438,0 4.03125,-1.74688 4.03125,-4.03125v-56.4375h117.31042c1.74687,0 3.35833,0.8052 4.29895,2.28333c1.075,1.47812 1.34375,3.2271 0.67188,4.8396l-18.40833,55.36145c-2.01562,6.04688 -7.52552,10.07813 -13.97552,10.07813h-84.5224c-7.39062,0 -13.4375,6.04688 -13.4375,13.4375c0,7.39063 6.04688,13.4375 13.4375,13.4375h63.82813c4.8375,0 8.73438,3.89687 8.73438,8.73438c0,2.28438 1.74688,4.03125 4.03125,4.03125c2.28437,0 4.03125,-1.74687 4.03125,-4.03125c0,-9.27187 -7.525,-16.79687 -16.79687,-16.79687h-63.82812c-2.95625,0 -5.375,-2.41875 -5.375,-5.375c0,-2.95625 2.41875,-5.375 5.375,-5.375h84.5224c9.80937,0 18.54322,-6.3151 21.63385,-15.58697l18.40833,-55.36407c1.34375,-4.16562 0.67397,-8.6 -1.87915,-12.09375c-2.55312,-3.49375 -6.58647,-5.6427 -10.88647,-5.6427h-117.17395v-9.40625c0,-2.28438 -1.74687,-4.03125 -4.03125,-4.03125zM34.9375,143.78125c-7.39062,0 -13.4375,6.04688 -13.4375,13.4375c0,7.39063 6.04688,13.4375 13.4375,13.4375c7.39063,0 13.4375,-6.04687 13.4375,-13.4375c0,-7.39062 -6.04687,-13.4375 -13.4375,-13.4375zM95.49023,146.46875c-1.02461,0 -2.03242,0.40365 -2.77148,1.2099c-2.55313,2.55312 -3.8974,5.91198 -3.8974,9.5401c0,7.39063 6.04688,13.4375 13.4375,13.4375c7.39063,0 13.4375,-6.04687 13.4375,-13.4375c0,-2.28438 -1.74687,-4.03125 -4.03125,-4.03125c-2.28437,0 -4.03125,1.74687 -4.03125,4.03125c0,2.95625 -2.41875,5.375 -5.375,5.375c-2.95625,0 -5.375,-2.41875 -5.375,-5.375c0,-1.47813 0.53907,-2.82292 1.61407,-3.76355c1.34375,-1.6125 1.34165,-4.16405 -0.13647,-5.77655c-0.80625,-0.80625 -1.84661,-1.2099 -2.87122,-1.2099zM34.9375,151.84375c2.95625,0 5.375,2.41875 5.375,5.375c0,2.95625 -2.41875,5.375 -5.375,5.375c-2.95625,0 -5.375,-2.41875 -5.375,-5.375c0,-2.95625 2.41875,-5.375 5.375,-5.375z"></path></g></g></svg>
+      <br>
+      Cart</a>
+  </div>
+
+  <!-- Jquery Core Js -->
+  <script src="../static/plugins/jquery/jquery.min.js"></script>
+
+  <!-- Bootstrap Core Js -->
+  <script src="../static/plugins/bootstrap/js/bootstrap.js"></script>
+
+  <!-- Select Plugin Js -->
+  <script src="../static/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+  <!-- Slimscroll Plugin Js -->
+  <script src="../static/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+  <!-- Waves Effect Plugin Js -->
+  <script src="../static/plugins/node-waves/waves.js"></script>
+
+  <!-- Jquery CountTo Plugin Js -->
+  <script src="../static/plugins/jquery-countto/jquery.countTo.js"></script>
+
+  <!-- Morris Plugin Js -->
+  <script src="../static/plugins/raphael/raphael.min.js"></script>
+  <script src="../static/plugins/morrisjs/morris.js"></script>
+
+  <!-- ChartJs -->
+  <script src="../static/plugins/chartjs/Chart.bundle.js"></script>
+
+  <!-- Flot Charts Plugin Js -->
+  <script src="../static/plugins/flot-charts/jquery.flot.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.resize.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.pie.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.categories.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.time.js"></script>
+
+    <!-- Bootstrap Notify Plugin Js -->
+    <script src="../static/plugins/bootstrap-notify/bootstrap-notify.js"></script>
+  <!-- Sparkline Chart Plugin Js -->
+  <script src="../static/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+  <!-- Custom Js -->
+  <script src="../static/js/admin.js"></script>
+  <script src="../static/js/pages/ui/modals.js"></script>
+  <script src="../static/js/pages/index.js"></script>
+
+  <!-- Demo Js -->
+  <script src="../static/js/demo.js"></script>
+  <!-- <script>
+      jQuery(document).ready(function () {
+         jQuery('#mdModal').fadeIn("slow");
+    });
+  </script> -->
+</body>
+
+</html>
