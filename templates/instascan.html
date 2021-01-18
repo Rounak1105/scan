@@ -70,7 +70,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      background-color: #00000096;
+      background-color: #0000009f;
     }
 
     .resBox {
@@ -78,7 +78,7 @@
       color: white;
       position: absolute;
       top: 66%;
-      left: 49%;
+      left: 50%;
       transform: translateX(-46%);
       font-size: 1.6rem;
       font-weight: 400;
@@ -87,24 +87,24 @@
     .cBox::after {
       position: absolute;
       top: 0;
-      left: -100px;
+      left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 1;
-      filter: grayscale(16%);
+      z-index: 5;
+      filter: grayscale(20%);
     }
 
     .box {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 15rem;
-      height: 15rem;
+      width: 17rem;
+      height: 17rem;
       background-color: #ffffff73;
       filter: brightness(130%);
-      border: 3px solid #00bdfc;
+      border: 3px solid #3c78d8ff;
       opacity: 0.4;
-      transform: translateX(-7.5rem) translateY(-7.5rem);
+      transform: translateX(-8.5rem) translateY(-8.5rem);
     }
 
     .navbar2 {
@@ -367,7 +367,7 @@
       Instascan.Camera.getCameras()
         .then(function (cameras) {
           if (cameras.length > 0) {
-            scanner.start(cameras[1]);
+            scanner.start(cameras[0]);
             $('[name="options"]').on("change", function () {
               if ($(this).val() == 1) {
                 if (cameras[1] != "") {
