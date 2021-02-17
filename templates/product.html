@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+  <title>SwingBuy</title>
+  <!-- Product Image Caraosel -->
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="product_image_carousel/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="product_image_carousel/css/style.css"> <!-- Resource style -->
+	<script src="product_image_carousel/js/modernizr.js"></script>
+  <!-- Favicon-->
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet"
+    type="text/css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css" />
+
+  <!-- Bootstrap Core Css -->
+  <link href="../static/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+
+  <!-- Waves Effect Css -->
+  <link href="../static/plugins/node-waves/waves.css" rel="stylesheet" />
+
+  <!-- Animation Css -->
+  <link href="../static/plugins/animate-css/animate.css" rel="stylesheet" />
+
+  <!-- Morris Chart Css-->
+  <link href="../static/plugins/morrisjs/morris.css" rel="stylesheet" />
+
+  <!-- Custom Css -->
+  <link href="../static/css/style.css" rel="stylesheet" />
+
+  <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+  <link href="../static/css/themes/all-themes.css" rel="stylesheet" />
+
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=PT+Sans" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+  <style>
+    .hover_bkgr_fricc {
+      background: rgba(0, 0, 0, .4);
+      cursor: pointer;
+      display: none;
+      height: 100%;
+      position: fixed;
+      text-align: center;
+      top: 0;
+      width: 100%;
+      z-index: 10000;
+    }
+
+    .hover_bkgr_fricc .helper {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .hover_bkgr_fricc>div {
+      background-color: white;
+      box-shadow: 10px 10px 60px #555;
+      display: inline-block;
+      height: auto;
+      max-width: 951px;
+      min-height: 100px;
+      vertical-align: middle;
+      width: 80%;
+      margin-top: 50px;
+      margin-bottom: 100px;
+      position: relative;
+      border-radius: 8px;
+      padding: 15px 5%;
+      font-size: 15px;
+    }
+
+    .popupCloseButton {
+      background-color: #fff;
+      border: 3px solid #999;
+      border-radius: 50px;
+      cursor: pointer;
+      display: inline-block;
+      font-family: arial;
+      font-weight: bold;
+      position: absolute;
+      top: -10px;
+      right: -17px;
+      font-size: 20px;
+      line-height: 30px;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+    }
+
+    .popupCloseButton:hover {
+      background-color: #ccc;
+    }
+
+    .trigger_popup_fricc {
+      cursor: pointer;
+      font-size: 20px;
+      margin: 20px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .bt {
+
+      width: 140px;
+      height: 30px;
+      background-color: #0099CC;
+      text-align: center;
+      color: white;
+      font-size: 13px;
+      border: none;
+    }
+
+    .navbar2 {
+      overflow: hidden;
+      background-color: #fff;
+      position: fixed;
+      display: flex;
+      bottom: 0;
+      width: 100%;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .containimg2 {
+      height: 75%;
+      /* margin-left: -0.4rem; */
+      object-fit: contain;
+    }
+
+    .scanner-button {
+      position: fixed;
+      width: 8vh;
+      height: 8vh;
+      bottom: 13vh;
+      right: 5%;
+      border-radius: 50% !important;
+      background-size: cover;
+      background: #0c73eb;
+      background-origin: border-box;
+      z-index: 5000;
+    }
+
+    .fav {
+      color: #0c73eb;
+      height: 24px;
+      width: 24px;
+    }
+
+    .divider {
+      width: 100vw;
+      margin-left: -8px;
+      margin-bottom: -10px;
+    }
+
+    .invert {
+      filter: invert(100);
+    }
+
+    .navbar2 a {
+      float: left;
+      flex: 1;
+      color: #3c78d8ff;
+      text-align: center;
+      padding: 10px 10px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+
+    .navbar2 a:hover {
+      background: #ccc;
+      color: black;
+    }
+
+    .navbar2 a.active {
+      background-color: #ccc;
+      color: #3c78d8ff;
+    }
+
+    .cross {
+      color: #fff;
+      width: 10px !important;
+      height: 20px;
+      float: right;
+      margin-top: 10px;
+      margin-right: 20px !important;
+    }
+
+    .exit-button {
+      background: linear-gradient(225deg, #ccccccff, #f3f3f3ff);
+      color: #000000;
+      font-size: 15px !important;
+      float: right;
+      margin-top: 10px;
+      margin-right: 5px;
+    }
+
+
+    #scanner-shadow {
+      width: 100vw;
+      height: 112vw;
+      position: absolute;
+      top: -2vh;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      color: goldenrod;
+      padding-top: 50vw;
+      box-shadow: 0px 0px 0px calc(40vh - 50vw) rgba(0, 0, 0, 0.2),
+        inset 0px 0px 0px 10vw rgba(0, 0, 0, 0.2);
+    }
+
+    .btns-div {
+      height: 5vh;
+      width: 8vw;
+      position: fixed;
+      bottom: 10vh;
+      float: left;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50vh;
+      left: 50vw;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* The actual popup */
+    .popup .popuptext {
+      visibility: hidden;
+      width: 160px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 10000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -80px;
+    }
+
+    /* Popup arrow */
+    .popup .popuptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+
+    .up {
+      z-index: 100000 !important;
+    }
+
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+      visibility: visible;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+    }
+
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    * {
+      font-family: 'PT Sans';
+    }
+
+    .product {
+      overflow: scroll;
+      height: 690px;
+      width: 100%;
+      margin-bottom: 100px;
+
+    }
+
+    .active1 {
+      height: auto;
+      width: 100%;
+      display: block;
+
+      margin-left: auto;
+      margin-right: auto;
+
+      margin-top: -50px;
+    }
+
+    .divv1 {
+      position: absolute;
+      width: 100%;
+      background-color: white;
+      height: auto;
+      padding: 0px;
+      margin-top: -95px;
+      margin-left: -15px;
+    }
+
+
+    .divv2 {
+      position: absolute;
+      margin-top: 1px;
+      width: 100%;
+      background-color: white;
+      height: auto;
+
+      padding: 0px;
+      margin-left: 0px;
+
+    }
+
+    .divv3 {
+      position: absolute;
+      margin-top: 86px;
+      width: 100%;
+      background-color: white;
+      height: 60px;
+      padding: 0px;
+      height: auto;
+
+    }
+
+    .divv4 {
+      position: absolute;
+      margin-top: 180.5px;
+      width: 100%;
+      background-color: white;
+      height: 60px;
+      padding: 0px;
+      height: auto;
+
+    }
+
+    .divv5 {
+      position: absolute;
+      margin-top: 261.5px;
+      width: 100%;
+      background-color: white;
+      height: 60px;
+      padding: 0px;
+
+    }
+
+    .button3 {
+      background-color: #008CBA;
+      /* Green */
+      border: none;
+      color: white;
+
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 4px 2px;
+      width: 250px;
+      height: 30px;
+      cursor: pointer;
+      
+    }
+
+    .button2 {
+      background-color: #008CBA;
+      border-radius: 30px;
+      /* Green */
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 13px;
+      margin: 4px 2px;
+      width: 80px;
+      height: 30px;
+      cursor: pointer;
+      margin-left: 70%;
+      margin-top: -90px;
+      
+    }
+    .button5 {
+      background-color: #008CBA;
+      border-radius: 30px;
+      /* Green */
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 13px;
+      margin: 4px 2px;
+      width: 80px;
+      height: 30px;
+      cursor: pointer;
+    }
+    body{
+      background-color: white;
+      
+      
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body class="theme-red" t>
+  <!-- Page Loader -->
+  <div class="page-loader-wrapper">
+    <div class="loader">
+      <div class="preloader">
+        <div class="spinner-layer pl-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <p>Please wait...</p>
+    </div>
+  </div>
+  <!-- #END# Page Loader -->
+  <!-- Overlay For Sidebars -->
+  <div class="overlay"></div>
+  <!-- #END# Overlay For Sidebars -->
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <div class="search-icon">
+      <i class="material-icons">search</i>
+    </div>
+    <input type="text" placeholder="START TYPING..." />
+    <div class="close-search">
+      <i class="material-icons">close</i>
+    </div>
+  </div>
+  <!-- #END# Search Bar -->
+  <!-- Top Bar -->
+  <nav class="navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <!-- <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#navbar-collapse" aria-expanded="false"></a> -->
+        <a href="javascript:void(0);" class="bars neg-margin"></a>
+        <!-- <a href="" class="cross"><i class="material-icons">favorite</i></a> -->
+        <a href="javascript:void(0);" class="js-search cross" data-close="true"><i class="material-icons">search</i></a>
+        <a class="navbar-brand" href="index.html">Hello, {{username}}</a>
+        <!-- <hr class="divider">
+        <div>
+        <a class="navbar-brand" href="index.html">{{current_store}}</a> -->
+        <!-- <a
+              href="javascript:void(0);"
+              class="navbar-toggle collapsed"
+              data-toggle="collapse"
+              data-target="#navbar-collapse"
+              aria-expanded="false"
+            ></a> -->
+
+        <!-- <a href="{{url_for('exit_from_store')}}">
+                <button class="exit-button btn shadow">
+                  <i class="material-icons">arrow_back</i>
+                  <span>Exit</span>
+                </button>
+            </a>
+           
+        </div>
+      </div> -->
+        <!-- <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">{{current_store}}</a>
+            </div> -->
+      </div>
+    </div>
+  </nav>
+  <div class="popup up">
+    <div class="popuptext" id="myPopup">Scan the QR code of the shop you're in<br>
+      <button class="btn btn-info" onclick="myFunction2()">Got it</button>
+    </div>
+  </div>
+
+  <script>
+    var toggle = 1;
+    // When the user clicks on div, open the popup
+    function myFunction() {
+      var popup = document.getElementById("myPopup");
+      if (toggle) {
+        popup.classList.toggle("show");
+        toggle = 0;
+      }
+    }
+    function myFunction2() {
+      var popup = document.getElementById("myPopup");
+      popup.classList.toggle("show");
+    }
+  </script>
+  <center>
+    <!-- <div id="camera">
+        <img class="camera" src="{{ url_for('video_feed') }}" alt="video feed">
+            <div id="scanner-shadow" className="text-center">Scan Shop QR
+            </div>
+      </div>
+      <div id="btns-div">
+        <a href="{{ url_for('capture_qr') }}">
+          <img class="btns-div" src="{{ url_for('static',filename='picture.png') }}" alt="take picture" class="btn"> 
+        </a>
+        <a href="{{ url_for('capture_bar') }}">
+          <img class="btns-div" src="{{ url_for('static',filename='picture.png') }}" alt="take picture" class="btn">
+        </a> -->
+    </div>
+  </center>
+  <!-- #Top Bar -->
+  <a class="trigger_popup_fricc">
+    <button type="button" class="btn scanner-button shadow">
+      <img class="containimg2 invert" src="https://cdn.icon-icons.com/icons2/1875/PNG/512/qrcodescan_120401.png"
+        style="height: 30px;width: 30px;">
+    </button>
+  </a>
+  <div class="hover_bkgr_fricc" id="a">
+    <span class="helper"></span>
+    <div>
+      <b>Scan Shop QR Code</b></p>
+      <img
+        src="https://media.istockphoto.com/vectors/mobile-phone-scans-qr-code-qr-scanner-isometric-vector-id1195232304?k=6&m=1195232304&s=170667a&w=0&h=awpEAPknIRG1vGh0Z45Dfv63GAVW8SUjHF0_caqZO0k="
+        style="height: 250px;width: 220px;"><br>
+      <!-- <p>Add any HTML content<br />inside the popup box!</p>-->
+      <button class="bt" onclick="location.href='http://localhost/scan/templates/instascan.html'"
+        type="button">OK</button>
+    </div>
+  </div>
+  <section>
+    <!-- Left Sidebar -->
+    <aside id="leftsidebar" class="sidebar">
+      <!-- User Info -->
+      <div class="user-info">
+        <div class="image">
+          <img src="../static/images/user.png" width="48" height="48" alt="User" />
+        </div>
+        <div class="info-container">
+          <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{usename}}
+          </div>
+          <div class="email">{{username}}@example.com</div>
+          <div class="btn-group user-helper-dropdown">
+            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="true">keyboard_arrow_down</i>
+            <ul class="dropdown-menu pull-right">
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a>
+              </li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- #User Info -->
+      <!-- Menu -->
+      <div class="menu">
+        <ul class="list">
+          <!-- <li class="active">
+            <a href="index.html">
+              <i class="material-icons">person</i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html">
+              <i class="material-icons">home</i>
+              <span>Rewards</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html">
+              <i class="material-icons">home</i>
+              <span>Coupons</span>
+            </a>
+          </li>
+          <hr> -->
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Purchases</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>E-Receipts</span>
+            </a>
+          </li>
+          <hr>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Notifications</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Settings</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/typography.html">
+              <i class="material-icons">text_fields</i>
+              <span>Customer Service</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- #Menu -->
+      <!-- Footer -->
+      <div></div>
+      <!-- #Footer -->
+    </aside>
+    <!-- #END# Left Sidebar -->
+
+  </section>
+  <section class="content">
+    <div class="product">
+      <div class="divv1">
+        <ul class="cd-gallery">
+          <li>
+            <a href="#">
+              <ul class="cd-item-wrapper">
+                <li class="selected">
+                  <img src="img/ugmonk-tshirt-1.jpg" alt="Preview image">
+                </li>
+      
+                <li class="move-right" data-sale="true" data-price="$22">
+                  <img src="img/ugmonk-tshirt-2.jpg" alt="Preview image">
+                </li>
+      
+                <li>
+                  <img src="img/ugmonk-tshirt-3.jpg" alt="Preview image">
+                </li>
+              </ul> <!-- cd-item-wrapper -->
+            </a>
+      
+            <div class="cd-item-info">
+              <b><a href="#0">Mountains</a></b>
+    
+            </div> <!-- cd-item-info -->
+          </li>
+      
+          
+        </ul> <!-- cd-gallery -->
+        <script src="product_image_carousel/js/jquery-2.1.1.js"></script>
+<script src="product_image_carousel/js/jquery.mobile.min.js"></script>
+<script src="product_image_carousel/js/main.js"></script> <!-- Resource jQuery -->
+        
+        <!-- <hr style="height:0.5px;border-width:0;color:#D0D0D0;background-color:#D0D0D0"> -->
+
+        <button class="button2">Wishlist</button>
+          <h5 style="margin-left: 15px;margin-top: -50px;">
+            <!-- <span style="font-size: large; font-weight: bold;">Levi's</span> -->
+            <br>
+            Men's Casual Shirt</h5><br>
+            
+        
+            <hr style="width:93%;margin-left: 3%;height:2px;border-width:0;color:#B8B8B8;background-color:#B8B8B8">
+          <h5 style="margin-left: 15px;"><span style="font-weight: bold;">MRP</span> : $15</h5>
+            <button class="button3" style="margin-left: 10%;">Check Availability</button>
+            <hr style="width:93%;margin-left: 3%;height:1.5px;border-width:0;color:#B8B8B8;background-color:#B8B8B8">
+          <h5 style="margin-left: 15px;"><span style="font-weight: bold;">Size</span> : XL
+            <br><span style="font-weight: bold;">Shop</span> : Lifestyle
+          </h5>
+            <button class="button button2" style="margin-top: -50px;margin-left: 70%;">More Info</button>
+            <hr style="width:93%;margin-left: 3%;height:1.5px;border-width:0;color:#B8B8B8;background-color:#B8B8B8">
+        
+          <h5 style="margin-left: 15px;">Product Details
+            <br><span style="font-weight: bold;">Shop</span> : Lifestyle<br><br>
+          </h5>
+          
+        </div>
+
+      </div>
+    </div>
+    
+    
+
+  </section>
+  <div class="navbar2">
+    <a href="#" class="active">
+      <i class="material-icons fav">home</i>
+      <br />
+      Home</a>
+    <a href="{{url_for('explore')}}">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 172 172"
+        style="fill: #000000">
+        <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
+          stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
+          font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+          <path d="M0,172v-172h172v172z" fill="none"></path>
+          <g fill="#0C73EB">
+            <path
+              d="M130.72,154.8h-89.44c-1.89469,0 -3.44,-1.53187 -3.44,-3.44v-50.17562l-7.88781,7.88781c-0.67187,0.67188 -1.59906,1.075 -2.53969,1.00781c-0.95406,-0.04031 -1.85437,-0.45687 -2.48594,-1.1825l-24.08,-27.52c-1.15563,-1.33031 -1.12875,-3.31906 0.08062,-4.60906l51.6,-55.04c1.02125,-1.10187 2.63375,-1.3975 3.99094,-0.7525c0.13437,0.06719 13.98844,6.54406 29.48187,6.54406c15.54719,0 29.3475,-6.47687 29.48188,-6.54406c1.30344,-0.63156 2.87562,-0.36281 3.91031,0.67188l51.6,51.6c1.34375,1.34375 1.34375,3.52062 0,4.86437l-27.52,27.52c-1.34375,1.34375 -3.52062,1.34375 -4.86437,0l-4.44781,-4.44781v50.17562c0,1.90813 -1.53187,3.44 -3.44,3.44z">
+            </path>
+          </g>
+        </g>
+      </svg>
+      <br />
+      Explore</a>
+    <a href="{{url_for('wishlist')}}">
+      <i class="material-icons fav">favorite</i>
+      <br />
+      Wishlist</a>
+    <a href="{{url_for('view_cart')}}">
+      <i class="material-icons fav">shopping_cart</i>
+      <br />
+      Cart</a>
+  </div>
+
+  <!-- Jquery Core Js -->
+  <script src="../static/plugins/jquery/jquery.min.js"></script>
+
+  <!-- Bootstrap Core Js -->
+  <script src="../static/plugins/bootstrap/js/bootstrap.js"></script>
+
+  <!-- Select Plugin Js -->
+  <script src="../static/plugins/bootstrap-select/js/bootstrap-select.js"></script>
+
+  <!-- Slimscroll Plugin Js -->
+  <script src="../static/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+
+  <!-- Waves Effect Plugin Js -->
+  <script src="../static/plugins/node-waves/waves.js"></script>
+
+  <!-- Jquery CountTo Plugin Js -->
+  <script src="../static/plugins/jquery-countto/jquery.countTo.js"></script>
+
+  <!-- Morris Plugin Js -->
+  <script src="../static/plugins/raphael/raphael.min.js"></script>
+  <script src="../static/plugins/morrisjs/morris.js"></script>
+
+  <!-- ChartJs -->
+  <script src="../static/plugins/chartjs/Chart.bundle.js"></script>
+
+  <!-- Flot Charts Plugin Js -->
+  <script src="../static/plugins/flot-charts/jquery.flot.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.resize.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.pie.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.categories.js"></script>
+  <script src="../static/plugins/flot-charts/jquery.flot.time.js"></script>
+
+  <!-- Sparkline Chart Plugin Js -->
+  <script src="../static/plugins/jquery-sparkline/jquery.sparkline.js"></script>
+
+  <!-- Custom Js -->
+  <script src="../static/js/admin.js"></script>
+  <script src="../static/js/pages/index.js"></script>
+
+  <!-- Demo Js -->
+  <script src="../static/js/demo.js"></script>
+</body>
+<script type="text/javascript">
+  $(window).load(function () {
+    $(".trigger_popup_fricc").click(function () {
+      $('.hover_bkgr_fricc').show();
+    });
+    $(".bt").click(function () {
+      $('.hover_bkgr_fricc').hide();
+    });
+    $('.popupCloseButton').click(function () {
+      $('.hover_bkgr_fricc').hide();
+    });
+  });
+
+</script>
+
+</html>
